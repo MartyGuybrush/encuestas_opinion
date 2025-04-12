@@ -16,8 +16,8 @@ div.row-widget.stRadio > div {
 }
 
 div.row-widget.stRadio > div[role="radiogroup"] > label {
-    margin-top: 25px !important;
-    margin-bottom: 25px !important;
+    margin-top: 22px !important;
+    margin-bottom: 22px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
 }
