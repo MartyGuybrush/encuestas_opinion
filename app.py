@@ -11,11 +11,11 @@ st.markdown("""
     <style>
     /* Aumentar tamaño del texto en radio buttons */
     .stRadio > div {
-        gap: 1rem;
+        gap: 2rem;
     }
 
     .stRadio label {
-        font-size: 1.4rem !important;
+        font-size: 1.6rem !important;
         line-height: 2;
         display: flex;
         align-items: center;
