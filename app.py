@@ -63,7 +63,7 @@ nombre_actividad = df_comisiones.loc[df_comisiones["comision"] == comision, "nom
 nombre_actividad = nombre_actividad[0] if len(nombre_actividad) > 0 else "Actividad sin nombre"
 
 st.title(f"📝 Encuesta de Opinión - {nombre_actividad}")
-st.markdown(f"**Código de comisión detectado:** `{comision}`")
+#st.markdown(f"**Código de comisión detectado:** `{comision}`")
 
 # Mostrar formulario
 if "enviado" not in st.session_state or not st.session_state.enviado:
