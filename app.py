@@ -36,8 +36,8 @@ div[data-testid="stRadio"] label {
 
 /* Mantén el resto de tus estilos como estaban */
 div[data-baseweb="radio"] label {
-    font-size: 1.2rem !important;
-    line-height: 1.6;
+    font-size: 1.5rem !important;
+    line-height: 1.8;
 }
 textarea {
     min-height: 150px !important;
