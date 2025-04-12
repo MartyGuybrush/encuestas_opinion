@@ -52,6 +52,10 @@ div.stButton > button {
     border-radius: 10px;
     transition: background-color 0.3s;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    /* Hacer que el botón ocupe todo el ancho disponible */
+    width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
 }
 div.stButton > button:hover {
     background-color: #c03d3c;
