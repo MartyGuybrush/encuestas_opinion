@@ -30,8 +30,9 @@ st.markdown(f"**Código de comisión detectado:** `{comision}`")
 st.markdown(
     """
     <style>
+    /* Aumentar tamaño del texto de opciones en st.radio */
     .stRadio > div > label {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
     </style>
     """,
