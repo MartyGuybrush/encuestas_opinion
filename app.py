@@ -9,31 +9,35 @@ st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
 st.markdown("""
 <style>
-/* Aumentar el espacio entre las opciones de radio */
-div[data-baseweb="radio"] {
-    margin-bottom: 1rem !important;
+/* Selectores más específicos para radio buttons en Streamlit */
+div.row-widget.stRadio > div {
+    flex-direction: column;
+    gap: 20px !important;
 }
 
-/* O este selector más específico */
-div[data-baseweb="radio"] div[role="radiogroup"] > label {
-    margin-bottom: 1.5rem !important;
-    display: block !important;
+div.row-widget.stRadio > div[role="radiogroup"] > label {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 
-/* Estilo para el contenedor completo */
-div[data-testid="stRadio"] > div {
-    row-gap: 1.5rem !important;
+/* Usando selectores de atributos para mayor especificidad */
+div[data-testid="stRadio"] label {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 15px !important;
 }
 
-/* Mantén el resto de tu CSS como está */
+/* Forzar espacio después de cada radio */
+.st-emotion-cache-1qg05tj:not(:last-child) {
+    margin-bottom: 20px !important;
+}
+
+/* Mantén el resto de tus estilos como estaban */
 div[data-baseweb="radio"] label {
     font-size: 1.2rem !important;
     line-height: 1.6;
-}
-div[data-baseweb="radio"] svg {
-    width: 1.4rem;
-    height: 1.4rem;
-    margin-right: 0.5rem;
 }
 textarea {
     min-height: 150px !important;
