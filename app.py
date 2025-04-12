@@ -7,6 +7,21 @@ import json
 
 st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
+st.markdown("""
+    <style>
+    /* Agrandar las opciones de radio buttons */
+    div[data-baseweb="radio"] > div {
+        font-size: 1.1rem !important;
+        line-height: 1.8;
+    }
+    /* También agrandamos los círculos (bullets) */
+    div[data-baseweb="radio"] svg {
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 # Leer código desde URL
 params = st.query_params
 comision = params.get("curso", "sin_codigo")
@@ -26,18 +41,6 @@ nombre_actividad = nombre_actividad[0] if len(nombre_actividad) > 0 else "Activi
 
 st.title(f"📝 Encuesta de Opinión - {nombre_actividad}")
 st.markdown(f"**Código de comisión detectado:** `{comision}`")
-
-st.markdown(
-    """
-    <style>
-    /* Aplica a las opciones de los radio buttons */
-    div[role="radiogroup"] > label {
-        font-size: 1.3rem !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 # Mostrar formulario
 if "enviado" not in st.session_state or not st.session_state.enviado:
