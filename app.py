@@ -7,8 +7,6 @@ import json
 
 st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
-st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
-
 st.markdown("""
 <style>
 /* Selector específico para el texto de los radio buttons */
