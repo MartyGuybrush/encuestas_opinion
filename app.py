@@ -8,33 +8,41 @@ import json
 st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
 st.markdown("""
-    <style>
-    /* Aumentar tamaño del texto en radio buttons */
-    .stRadio > div {
-        gap: 2rem;
-    }
+<style>
+/* Opciones de radio */
+div[data-baseweb="radio"] > div {
+    font-size: 1.2rem !important;
+    line-height: 1.4;
+    margin-bottom: 0.2rem;
+}
 
-    .stRadio label {
-        font-size: 1.6rem !important;
-        line-height: 2;
-        display: flex;
-        align-items: center;
-    }
+/* Bullets (círculos) */
+div[data-baseweb="radio"] svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
 
-    /* Aumentar tamaño del círculo (radio bullet) */
-    .stRadio input[type="radio"] {
-        width: 1.3rem;
-        height: 1.3rem;
-        margin-right: 0.6rem;
-    }
-    /* Agrandar botón de enviar */
-    div.stButton > button {
-        font-size: 1.2rem;
-        padding: 0.75rem 2rem;
-        border-radius: 8px;
-    }
-   
-    </style>
+/* TextArea más alto */
+textarea {
+    min-height: 150px !important;
+    font-size: 1.05rem !important;
+}
+
+/* Botón estilizado */
+div.stButton > button {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.5rem;
+    background-color: #2E8B57;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+div.stButton > button:hover {
+    background-color: #246b45;
+    cursor: pointer;
+}
+</style>
 """, unsafe_allow_html=True)
 
 # Leer código desde URL
