@@ -27,6 +27,17 @@ nombre_actividad = nombre_actividad[0] if len(nombre_actividad) > 0 else "Activi
 st.title(f"📝 Encuesta de Opinión - {nombre_actividad}")
 st.markdown(f"**Código de comisión detectado:** `{comision}`")
 
+st.markdown(
+    """
+    <style>
+    .stRadio > div > label {
+        font-size: 1.1rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Mostrar formulario
 if "enviado" not in st.session_state or not st.session_state.enviado:
 
