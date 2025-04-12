@@ -32,33 +32,33 @@ st.markdown(f"**Código de comisión detectado:** `{comision}`")
 # Si no fue enviado, mostrar el formulario
 if "enviado" not in st.session_state or not st.session_state.enviado:
     conocimientos_previos = st.radio(
-        "📌 ¿Tenías conocimientos previos sobre los temas desarrollados en este curso?",
+        "📌 ¿TENÌAS CONOCIMIENTOS PREVIOS SOBRE LOS TEMAS DESARROLADO/S EN ESTA CAPACITACIÓN?",
         ["CONOCÍA BIEN LOS TEMAS", "TENÍA ALGÚN CONOCIMIENTO", "DESCONOCÍA LOS TEMAS"],
         index=None
     )
 
     valoracion_curso = st.radio(
-        "📊 ¿Cómo calificarías esta capacitación en general?",
+        "📌 ¿CÒMO CALIFICARÌAS ESTA CAPACITACIÒN EN GENERAL?",
         ["EXCELENTE", "MUY BUENA", "BUENA", "REGULAR", "MALA"],
         index=None
     )
 
     conocimientos_aplicables = st.radio(
-        "🧠 ¿Creés que vas a aplicar a tus tareas habituales los conocimientos adquiridos en este curso?",
+        "📌 ¿CREES QUE VAS A APLICAR A TUS TAREAS HABITUALES LOS CONOCIMIENTOS ADQUIRIDOS EN ESTE CURSO?",
         ["TOTALMENTE DE ACUERDO", "DE ACUERDO", "PARCIALMENTE DE ACUERDO", "EN DESACUERDO"],
         index=None
     )
 
     valoracion_docente = st.radio(
-        "👨‍🏫 ¿Cómo calificarías el desempeño del/la docente?",
+        "📌 ¿CÒMO CALIFICARÍAS EL DESEMPEÑO DEL/LOS DOCENTE/S?",
         ["EXCELENTE", "MUY BUENO", "BUENO", "REGULAR", "MALO"],
         index=None
     )
 
-    aprendizajes_adquiridos = st.text_area("💡 Contanos qué aprendizajes adquiriste en esta capacitación.", placeholder="Escribí aquí...")
-    comentarios = st.text_area("💬 Comentarios o sugerencias que puedan resultar útiles para futuras capacitaciones (opcional)", placeholder="Escribí aquí...")
+    aprendizajes_adquiridos = st.text_area("💬 CONTANOS QUÉ APRENDIZAJES ADQUIRISTE EN ESTA CAPACITACIÓN.", placeholder="Escribí aquí...")
+    comentarios = st.text_area("💬 COMENTARIOS O SUGERENCIAS QUE PUEDAN RESULTAR ÚTILES PARA FUTURAS CAPACITACIONES (OPCIONAL)", placeholder="Escribí aquí...")
 
-    if st.button("📤 Enviar encuesta"):
+    if st.button("📤 ENVIAR RESPUESTA"):
         if not all([conocimientos_previos, valoracion_curso, conocimientos_aplicables, valoracion_docente, aprendizajes_adquiridos]):
             st.warning("⚠️ Por favor, completá todas las preguntas obligatorias antes de enviar.")
         else:
