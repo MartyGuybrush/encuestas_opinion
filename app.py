@@ -15,7 +15,7 @@ st.markdown("""
     }
 
     .stRadio label {
-        font-size: 1.3rem !important;
+        font-size: 1.4rem !important;
         line-height: 2;
         display: flex;
         align-items: center;
