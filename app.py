@@ -14,7 +14,7 @@ div[data-baseweb="radio"] label {
     display: block;
     font-size: 1.2rem !important;
     line-height: 1.6;
-    margin-bottom: 1.9rem; /* Aumentá este valor para más separación */
+    margin-bottom: 0.5rem; /* Aumentá este valor para más separación */
 }
 
 /* Bullets (círculos) */
