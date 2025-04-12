@@ -9,6 +9,22 @@ st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
 st.markdown("""
 <style>
+/* Estilo para radio buttons más grandes */
+div[data-baseweb="radio"] > div {
+    font-size: 1.4rem !important;
+    line-height: 1.8 !important;
+    padding: 0.5rem 0 !important;
+}
+div[data-baseweb="radio"] label {
+    font-size: 1.4rem !important;
+    line-height: 1.8 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+st.markdown("""
+<style>
 /* Selectores más específicos para radio buttons en Streamlit */
 div.row-widget.stRadio > div {
     flex-direction: column;
