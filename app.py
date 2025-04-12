@@ -11,7 +11,7 @@ st.markdown("""
 <style>
 /* Más espacio entre cada opción */
 div[data-baseweb="radio"] > div > div {
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem;
 }
 
 /* Tamaño del texto de opciones */
