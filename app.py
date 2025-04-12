@@ -32,14 +32,15 @@ textarea {
 div.stButton > button {
     font-size: 1.1rem;
     padding: 0.6rem 1.5rem;
-    background-color: #2E8B57;
+    background-color: #e24c4b; /* Rojo vibrante similar al pin */
     color: white;
     border: none;
     border-radius: 10px;
     transition: background-color 0.3s;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
 }
 div.stButton > button:hover {
-    background-color: #246b45;
+    background-color: #c03d3c;
     cursor: pointer;
 }
 </style>
