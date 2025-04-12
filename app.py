@@ -30,9 +30,9 @@ textarea {
 
 /* Botón estilizado */
 div.stButton > button {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     padding: 0.6rem 1.5rem;
-    background-color: #e24c4b; /* Rojo vibrante similar al pin */
+    background-color: #e24c4b; /* Rojo vibrante */
     color: white;
     border: none;
     border-radius: 10px;
