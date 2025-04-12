@@ -11,7 +11,7 @@ st.markdown("""
 <style>
 /* Opciones de radio */
 div[data-baseweb="radio"] > div {
-    font-size: 1.2rem !important;
+    font-size: 1.5rem !important;
     line-height: 1.6;
     margin-bottom: 0.2rem;
 }
