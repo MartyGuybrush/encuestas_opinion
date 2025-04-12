@@ -47,10 +47,18 @@ if "enviado" not in st.session_state or not st.session_state.enviado:
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown("#### 💬 CONTANOS QUÉ APRENDIZAJES ADQUIRISTE EN ESTA CAPACITACIÓN.")
-    aprendizajes_adquiridos = st.text_area("", placeholder="Escribí aquí...")
+    aprendizajes_adquiridos = st.text_area(
+        "aprendizajes", 
+        placeholder="Escribí aquí...", 
+        label_visibility="collapsed"
+    )
 
     st.markdown("#### 💬 COMENTARIOS O SUGERENCIAS QUE PUEDAN RESULTAR ÚTILES PARA FUTURAS CAPACITACIONES (OPCIONAL)")
-    comentarios = st.text_area("", placeholder="Escribí aquí...")
+    comentarios = st.text_area(
+        "comentarios", 
+        placeholder="Escribí aquí...", 
+        label_visibility="collapsed"
+    )
 
     if st.button("📤 ENVIAR RESPUESTA"):
         if not all([conocimientos_previos, valoracion_curso, conocimientos_aplicables, valoracion_docente, aprendizajes_adquiridos]):
@@ -74,4 +82,3 @@ if "enviado" not in st.session_state or not st.session_state.enviado:
 
 else:
     st.success("✅ ¡Gracias! Tu opinión fue enviada correctamente.")
-
