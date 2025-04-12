@@ -118,6 +118,8 @@ if "enviado" not in st.session_state or not st.session_state.enviado:
         label_visibility="collapsed"
     )
     st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+
 
     if st.button("📤 ENVIAR RESPUESTA"):
         if not all([conocimientos_previos, valoracion_curso, conocimientos_aplicables, valoracion_docente, aprendizajes_adquiridos]):
@@ -140,4 +142,4 @@ if "enviado" not in st.session_state or not st.session_state.enviado:
             st.rerun()
 
 else:
-    st.success("✅ ¡Gracias! Tu opinión fue enviada correctamente.")
+    st.success("✅ ¡GRACIAS! TU OPINIÓN FUE ENVIADA CORRECTAMENTE.")
