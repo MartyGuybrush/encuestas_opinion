@@ -27,6 +27,13 @@ st.markdown("""
         height: 1.3rem;
         margin-right: 0.6rem;
     }
+    /* Agrandar botón de enviar */
+    div.stButton > button {
+        font-size: 1.2rem;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+    }
+   
     </style>
 """, unsafe_allow_html=True)
 
