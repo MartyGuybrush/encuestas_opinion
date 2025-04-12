@@ -10,16 +10,18 @@ st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 st.markdown("""
 <style>
 /* Opciones de radio */
-div[data-baseweb="radio"] > div {
+div[data-baseweb="radio"] label {
+    display: block;
     font-size: 1.2rem !important;
     line-height: 1.6;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.5rem; /* Aumentá este valor para más separación */
 }
 
 /* Bullets (círculos) */
 div[data-baseweb="radio"] svg {
     width: 1.4rem;
     height: 1.4rem;
+    margin-right: 0.5rem;
 }
 
 /* TextArea más alto */
@@ -32,7 +34,7 @@ textarea {
 div.stButton > button {
     font-size: 1.3rem;
     padding: 0.6rem 1.5rem;
-    background-color: #e24c4b; /* Rojo vibrante */
+    background-color: #e24c4b;
     color: white;
     border: none;
     border-radius: 10px;
