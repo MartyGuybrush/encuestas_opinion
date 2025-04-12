@@ -36,7 +36,7 @@ div[data-testid="stRadio"] label {
 
 /* Mantén el resto de tus estilos como estaban */
 div[data-baseweb="radio"] label {
-    font-size: 1.2rem !important;
+    font-size: 1.6rem !important;
     line-height: 1.6;
 }
 textarea {
