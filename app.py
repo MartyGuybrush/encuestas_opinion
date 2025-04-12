@@ -9,19 +9,36 @@ st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
 st.markdown("""
 <style>
-/* Selector específico para el texto de los radio buttons */
-.st-emotion-cache-1gcvbet, .st-emotion-cache-ue6h4q, .st-emotion-cache-j5r0tf {
-    font-size: 1.2rem !important;
-    font-weight: 500 !important;
+/* Selectores más específicos para radio buttons en Streamlit */
+div.row-widget.stRadio > div {
+    flex-direction: column;
+    gap: 20px !important;
 }
 
-/* Espaciado entre opciones */
-.st-emotion-cache-1qg05tj {
+div.row-widget.stRadio > div[role="radiogroup"] > label {
+    margin-top: 22px !important;
+    margin-bottom: 22px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+/* Usando selectores de atributos para mayor especificidad */
+div[data-testid="stRadio"] label {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
     margin-bottom: 15px !important;
-    padding: 15px 0 !important;
+}
+
+/* Forzar espacio después de cada radio */
+.st-emotion-cache-1qg05tj:not(:last-child) {
+    margin-bottom: 20px !important;
 }
 
 /* Mantén el resto de tus estilos como estaban */
+div[data-baseweb="radio"] label {
+    font-size: 1.5rem !important;
+    line-height: 1.8;
+}
 textarea {
     min-height: 150px !important;
     font-size: 1.05rem !important;
@@ -35,6 +52,7 @@ div.stButton > button {
     border-radius: 10px;
     transition: background-color 0.3s;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    /* Hacer que el botón ocupe todo el ancho disponible */
     width: 100% !important;
     display: block !important;
     box-sizing: border-box !important;
