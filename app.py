@@ -72,6 +72,21 @@ st.title(f"📝 Encuesta de Opinión - {nombre_actividad}")
 if "enviado" not in st.session_state or not st.session_state.enviado:
 
     st.markdown("##### 📌 ¿TENÍAS CONOCIMIENTOS PREVIOS SOBRE LOS TEMAS DESARROLLADOS EN ESTA CAPACITACIÓN?")
+
+    # Contenedor para estilizar alrededor del radio
+    with st.container():
+        st.markdown("""
+        <style>
+        /* Forzar tamaño en este contenedor específico */
+        .element-container:has(div[role="radiogroup"]) {
+            font-size: 1.6rem !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+    
+        conocimientos_previos = st.radio("", ["CONOCÍA BIEN LOS TEMAS", "TENÍA ALGÚN CONOCIMIENTO", "DESCONOCÍA LOS TEMAS"], index=None)
+
+    st.markdown("##### 📌 ¿TENÍAS CONOCIMIENTOS PREVIOS SOBRE LOS TEMAS DESARROLLADOS EN ESTA CAPACITACIÓN?")
     conocimientos_previos = st.radio("", ["CONOCÍA BIEN LOS TEMAS", "TENÍA ALGÚN CONOCIMIENTO", "DESCONOCÍA LOS TEMAS"], index=None)
     st.markdown("<br>", unsafe_allow_html=True)
 
