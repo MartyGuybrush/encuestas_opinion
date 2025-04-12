@@ -9,31 +9,36 @@ st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
 st.markdown("""
 <style>
-/* Más espacio entre cada opción de radio */
-div[data-baseweb="radio"] > div {
-    gap: 1rem !important; /* Espaciado vertical entre opciones */
+/* Aumentar el espacio entre las opciones de radio */
+div[data-baseweb="radio"] {
+    margin-bottom: 1rem !important;
 }
 
-/* Ajuste general: tamaño y márgenes */
+/* O este selector más específico */
+div[data-baseweb="radio"] div[role="radiogroup"] > label {
+    margin-bottom: 1.5rem !important;
+    display: block !important;
+}
+
+/* Estilo para el contenedor completo */
+div[data-testid="stRadio"] > div {
+    row-gap: 1.5rem !important;
+}
+
+/* Mantén el resto de tu CSS como está */
 div[data-baseweb="radio"] label {
     font-size: 1.2rem !important;
     line-height: 1.6;
 }
-
-/* Bullets (círculos) */
 div[data-baseweb="radio"] svg {
     width: 1.4rem;
     height: 1.4rem;
     margin-right: 0.5rem;
 }
-
-/* TextArea más alto */
 textarea {
     min-height: 150px !important;
     font-size: 1.05rem !important;
 }
-
-/* Botón estilizado */
 div.stButton > button {
     font-size: 1.3rem;
     padding: 0.6rem 1.5rem;
