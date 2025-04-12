@@ -18,7 +18,7 @@ st.markdown("""
 /* Espaciado entre opciones */
 .st-emotion-cache-1qg05tj {
     margin-bottom: 15px !important;
-    padding: 10px 0 !important;
+    padding: 15px 0 !important;
 }
 
 /* Mantén el resto de tus estilos como estaban */
