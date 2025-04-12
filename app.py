@@ -7,6 +7,8 @@ import json
 
 st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
+st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
+
 st.markdown("""
 <style>
 /* Selector específico para el texto de los radio buttons */
@@ -42,31 +44,6 @@ div.stButton > button {
 div.stButton > button:hover {
     background-color: #c03d3c;
     cursor: pointer;
-}
-
-/* Forzar tamaño de texto en todos los labels de radio buttons */
-label {
-    font-size: 1.3rem !important;
-}
-
-/* Específicamente para radio buttons */
-.stRadio label {
-    font-size: 1.3rem !important;
-    line-height: 1.8 !important;
-}
-
-/* Target más directo a los textos de las opciones */
-.st-emotion-cache-eczf16 label span, 
-.st-bq lo7m label span,
-.st-emotion-cache-1nrr2er {
-    font-size: 1.3rem !important;
-}
-
-/* Espaciado entre opciones */
-.st-emotion-cache-1qg05tj {
-    margin-bottom: 18px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
 }
 </style>
 """, unsafe_allow_html=True)
