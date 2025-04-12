@@ -9,15 +9,18 @@ st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
 st.markdown("""
 <style>
-/* Opciones de radio */
-div[data-baseweb="radio"] label {
-    display: block;
-    font-size: 1.2rem !important;
-    line-height: 1.6;
-    margin-bottom: 0.5rem; /* Aumentá este valor para más separación */
+/* Más espacio entre cada opción */
+div[data-baseweb="radio"] > div > div {
+    margin-bottom: 0.6rem;
 }
 
-/* Bullets (círculos) */
+/* Tamaño del texto de opciones */
+div[data-baseweb="radio"] > div > div > label {
+    font-size: 1.2rem !important;
+    line-height: 1.6;
+}
+
+/* Tamaño de los bullets */
 div[data-baseweb="radio"] svg {
     width: 1.4rem;
     height: 1.4rem;
