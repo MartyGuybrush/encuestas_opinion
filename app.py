@@ -64,7 +64,7 @@ div.stButton > button:hover {
 
 /* Forzar el tamaño de fuente en los textos de radio buttons */
 div[data-testid="stRadio"] label span {
-    font-size: 1.5rem !important;
+    font-size: 2.5rem !important;
     
 </style>
 """, unsafe_allow_html=True)
