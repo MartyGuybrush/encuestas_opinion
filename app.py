@@ -36,7 +36,7 @@ div[data-testid="stRadio"] label {
 
 /* Mantén el resto de tus estilos como estaban */
 div[data-baseweb="radio"] label {
-    font-size: 1.6rem !important;
+    font-size: 1.2rem !important;
     line-height: 1.6;
 }
 textarea {
@@ -44,7 +44,7 @@ textarea {
     font-size: 1.05rem !important;
 }
 div.stButton > button {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     padding: 0.6rem 1.5rem;
     background-color: #e24c4b;
     color: white;
