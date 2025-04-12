@@ -9,25 +9,26 @@ st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
 st.markdown("""
     <style>
-    /* Aumentar tamaño del texto de opciones (radio y checkbox) */
-    label[data-testid="stRadio"] > div > div {
-        font-size: 1.2rem !important;
-        line-height: 1.8;
+    /* Aumentar tamaño del texto en radio buttons */
+    .stRadio > div {
+        gap: 1rem;
     }
 
-    /* Alternativa más robusta (compatible con más temas) */
-    div[role="radiogroup"] label {
-        font-size: 1.2rem !important;
-        line-height: 1.8;
+    .stRadio label {
+        font-size: 1.3rem !important;
+        line-height: 2;
+        display: flex;
+        align-items: center;
     }
 
-    /* Agrandar el círculo del radio button */
-    div[role="radiogroup"] svg {
-        width: 1.4rem;
-        height: 1.4rem;
+    /* Aumentar tamaño del círculo (radio bullet) */
+    .stRadio input[type="radio"] {
+        width: 1.3rem;
+        height: 1.3rem;
+        margin-right: 0.6rem;
     }
     </style>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # Leer código desde URL
 params = st.query_params
