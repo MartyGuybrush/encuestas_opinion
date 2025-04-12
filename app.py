@@ -61,9 +61,13 @@ sheet = gc.open_by_key("1440OXxY-2bw7NAFr01hGeiVYrbHu_G47u9IIoLfaAjM")
 hoja_comisiones = sheet.worksheet("comisiones")
 df_comisiones = pd.DataFrame(hoja_comisiones.get_all_records())
 nombre_actividad = df_comisiones.loc[df_comisiones["comision"] == comision, "nombre_actividad"].values
-nombre_actividad = nombre_actividad[0] if len(nombre_actividad) > 0 else "Actividad sin nombre"
 
-st.title(f"📝 Encuesta de Opinión - {nombre_actividad}")
+# Si hay un nombre de actividad, mostrarlo en el título, si no, solo mostrar "Encuesta de Opinión"
+if len(nombre_actividad) > 0:
+    st.title(f"📝 Encuesta de Opinión - {nombre_actividad[0]}")
+else:
+    st.title("📝 Encuesta de Opinión")
+
 #st.markdown(f"**Código de comisión detectado:** `{comision}`")
 
 # Mostrar formulario
