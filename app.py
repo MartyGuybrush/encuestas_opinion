@@ -52,7 +52,7 @@ st.markdown(f"**Código de comisión detectado:** `{comision}`")
 # Mostrar formulario
 if "enviado" not in st.session_state or not st.session_state.enviado:
 
-    st.markdown("#### 📌 ¿TENÍAS CONOCIMIENTOS PREVIOS SOBRE LOS TEMAS DESARROLLADOS EN ESTA CAPACITACIÓN?")
+    st.markdown("##### 📌 ¿TENÍAS CONOCIMIENTOS PREVIOS SOBRE LOS TEMAS DESARROLLADOS EN ESTA CAPACITACIÓN?")
     conocimientos_previos = st.radio("", ["CONOCÍA BIEN LOS TEMAS", "TENÍA ALGÚN CONOCIMIENTO", "DESCONOCÍA LOS TEMAS"], index=None)
     st.markdown("<br>", unsafe_allow_html=True)
 
