@@ -56,26 +56,26 @@ if "enviado" not in st.session_state or not st.session_state.enviado:
     conocimientos_previos = st.radio("", ["CONOCÍA BIEN LOS TEMAS", "TENÍA ALGÚN CONOCIMIENTO", "DESCONOCÍA LOS TEMAS"], index=None)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("#### 📌 ¿CÓMO CALIFICARÍAS ESTA CAPACITACIÓN EN GENERAL?")
+    st.markdown("##### 📌 ¿CÓMO CALIFICARÍAS ESTA CAPACITACIÓN EN GENERAL?")
     valoracion_curso = st.radio("", ["EXCELENTE", "MUY BUENA", "BUENA", "REGULAR", "MALA"], index=None)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("#### 📌 ¿CREÉS QUE VAS A APLICAR A TUS TAREAS HABITUALES LOS CONOCIMIENTOS ADQUIRIDOS EN ESTE CURSO?")
+    st.markdown("##### 📌 ¿CREÉS QUE VAS A APLICAR A TUS TAREAS HABITUALES LOS CONOCIMIENTOS ADQUIRIDOS EN ESTE CURSO?")
     conocimientos_aplicables = st.radio("", ["TOTALMENTE DE ACUERDO", "DE ACUERDO", "PARCIALMENTE DE ACUERDO", "EN DESACUERDO"], index=None)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("#### 📌 ¿CÓMO CALIFICARÍAS EL DESEMPEÑO DEL/LOS DOCENTE/S?")
+    st.markdown("##### 📌 ¿CÓMO CALIFICARÍAS EL DESEMPEÑO DEL/LOS DOCENTE/S?")
     valoracion_docente = st.radio("", ["EXCELENTE", "MUY BUENO", "BUENO", "REGULAR", "MALO"], index=None)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("#### 💬 CONTANOS QUÉ APRENDIZAJES ADQUIRISTE EN ESTA CAPACITACIÓN.")
+    st.markdown("##### 💬 CONTANOS QUÉ APRENDIZAJES ADQUIRISTE EN ESTA CAPACITACIÓN.")
     aprendizajes_adquiridos = st.text_area(
         "aprendizajes", 
         placeholder="Escribí aquí...", 
         label_visibility="collapsed"
     )
 
-    st.markdown("#### 💬 COMENTARIOS O SUGERENCIAS QUE PUEDAN RESULTAR ÚTILES PARA FUTURAS CAPACITACIONES (OPCIONAL)")
+    st.markdown("##### 💬 COMENTARIOS O SUGERENCIAS QUE PUEDAN RESULTAR ÚTILES PARA FUTURAS CAPACITACIONES (OPCIONAL)")
     comentarios = st.text_area(
         "comentarios", 
         placeholder="Escribí aquí...", 
