@@ -13,7 +13,9 @@ comision = params.get("curso", "sin_codigo")
 
 # Autenticación con Google Sheets
 scope = ["https://www.googleapis.com/auth/spreadsheets"]
-creds = Credentials.from_service_account_file("credenciales_google_encuestas.json", scopes=scope)
+import json
+credenciales_dict = json.loads(st.secrets["GOOGLE_CREDS"])
+creds = Credentials.from_service_account_info(credenciales_dict, scopes=scope)
 gc = gspread.authorize(creds)
 sheet = gc.open_by_key("1440OXxY-2bw7NAFr01hGeiVYrbHu_G47u9IIoLfaAjM")
 
