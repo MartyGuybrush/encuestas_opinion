@@ -11,15 +11,15 @@ st.markdown("""
 <style>
 /* Opciones de radio */
 div[data-baseweb="radio"] > div {
-    font-size: 1.5rem !important;
+    font-size: 1.2rem !important;
     line-height: 1.6;
     margin-bottom: 0.2rem;
 }
 
 /* Bullets (círculos) */
 div[data-baseweb="radio"] svg {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.4rem;
+    height: 1.4rem;
 }
 
 /* TextArea más alto */
