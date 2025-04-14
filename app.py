@@ -4,37 +4,31 @@ import gspread
 from datetime import datetime
 import pandas as pd
 import json
+import threading
 
 st.set_page_config(page_title="Encuesta de Capacitación", layout="centered")
 
+# === ESTILOS CUSTOM ===
 st.markdown("""
 <style>
-/* Selectores más específicos para radio buttons en Streamlit */
 div.row-widget.stRadio > div {
     flex-direction: column;
     gap: 20px !important;
 }
-
 div.row-widget.stRadio > div[role="radiogroup"] > label {
     margin-top: 22px !important;
     margin-bottom: 22px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
 }
-
-/* Usando selectores de atributos para mayor especificidad */
 div[data-testid="stRadio"] label {
     padding-top: 8px !important;
     padding-bottom: 8px !important;
     margin-bottom: 15px !important;
 }
-
-/* Forzar espacio después de cada radio */
 .st-emotion-cache-1qg05tj:not(:last-child) {
     margin-bottom: 20px !important;
 }
-
-/* Mantén el resto de tus estilos como estaban */
 div[data-baseweb="radio"] label {
     font-size: 1.5rem !important;
     line-height: 1.8;
@@ -51,8 +45,6 @@ div.stButton > button {
     border: none;
     border-radius: 10px;
     transition: background-color 0.3s;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-    /* Hacer que el botón ocupe todo el ancho disponible */
     width: 100% !important;
     display: block !important;
     box-sizing: border-box !important;
@@ -64,33 +56,38 @@ div.stButton > button:hover {
 </style>
 """, unsafe_allow_html=True)
 
-# Leer código desde URL
+# === LOCK GLOBAL PARA GUARDADO SEGURO ===
+@st.cache_resource
+def get_global_lock():
+    return threading.Lock()
+
+lock = get_global_lock()
+
+# === CACHE DE HOJA GOOGLE ===
+@st.cache_resource
+def get_hoja_google():
+    scope = ["https://www.googleapis.com/auth/spreadsheets"]
+    credenciales_dict = json.loads(st.secrets["GOOGLE_CREDS"])
+    creds = Credentials.from_service_account_info(credenciales_dict, scopes=scope)
+    gc = gspread.authorize(creds)
+    return gc.open_by_key("1440OXxY-2bw7NAFr01hGeiVYrbHu_G47u9IIoLfaAjM")
+
+# === INTENTAR CARGAR HOJA ===
+try:
+    sheet = get_hoja_google()
+except Exception as e:
+    st.error("❌ No se pudo cargar el formulario. Intentalo nuevamente en unos minutos.")
+    st.stop()
+
+# === OBTENER PARÁMETRO DE COMISIÓN ===
 params = st.query_params
 comision = params.get("curso", "sin_codigo")
 
-# Autenticación con Google Sheets
-scope = ["https://www.googleapis.com/auth/spreadsheets"]
-credenciales_dict = json.loads(st.secrets["GOOGLE_CREDS"])
-creds = Credentials.from_service_account_info(credenciales_dict, scopes=scope)
-gc = gspread.authorize(creds)
-sheet = gc.open_by_key("1440OXxY-2bw7NAFr01hGeiVYrbHu_G47u9IIoLfaAjM")
-
-# Obtener nombre de actividad desde hoja "comisiones"
-hoja_comisiones = sheet.worksheet("comisiones")
-df_comisiones = pd.DataFrame(hoja_comisiones.get_all_records())
-nombre_actividad = df_comisiones.loc[df_comisiones["comision"] == comision, "nombre_actividad"].values
-
-# Si hay un nombre de actividad, mostrarlo en el título, si no, solo mostrar "Encuesta de Opinión"
-if len(nombre_actividad) > 0:
-    st.title(f"📝 Encuesta de Opinión - {nombre_actividad[0]}")
-else:
-    st.title("📝 Encuesta de Opinión")
-
-#st.markdown(f"**Código de comisión detectado:** `{comision}`") 
-
+# === TÍTULO SIMPLIFICADO ===
+st.title("📝 Encuesta de Opinión")
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Mostrar formulario
+# === FORMULARIO ===
 if "enviado" not in st.session_state or not st.session_state.enviado:
 
     st.markdown("##### 📌 ¿TENÍAS CONOCIMIENTOS PREVIOS SOBRE LOS TEMAS DESARROLLADOS EN ESTA CAPACITACIÓN?")
@@ -110,41 +107,37 @@ if "enviado" not in st.session_state or not st.session_state.enviado:
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown("##### 💬 CONTANOS QUÉ APRENDIZAJES ADQUIRISTE EN ESTA CAPACITACIÓN.")
-    aprendizajes_adquiridos = st.text_area(
-        "aprendizajes", 
-        placeholder="Escribí aquí...", 
-        label_visibility="collapsed"
-    )
+    aprendizajes_adquiridos = st.text_area("aprendizajes", placeholder="Escribí aquí...", label_visibility="collapsed")
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown("##### 💬 COMENTARIOS O SUGERENCIAS QUE PUEDAN RESULTAR ÚTILES PARA FUTURAS CAPACITACIONES (OPCIONAL)")
-    comentarios = st.text_area(
-        "comentarios", 
-        placeholder="Escribí aquí...", 
-        label_visibility="collapsed"
-    )
+    comentarios = st.text_area("comentarios", placeholder="Escribí aquí...", label_visibility="collapsed")
     st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
-
 
     if st.button("📤 ENVIAR RESPUESTA"):
         if not all([conocimientos_previos, valoracion_curso, conocimientos_aplicables, valoracion_docente, aprendizajes_adquiridos]):
             st.warning("⚠️ Por favor, completá todas las preguntas obligatorias antes de enviar.")
         else:
-            worksheet = sheet.worksheet("respuestas")
-            fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            fila = [
-                fecha,
-                comision,
-                conocimientos_previos,
-                valoracion_curso,
-                conocimientos_aplicables,
-                valoracion_docente,
-                aprendizajes_adquiridos,
-                comentarios
-            ]
-            worksheet.append_row(fila)
-            st.session_state.enviado = True
-            st.rerun()
+            try:
+                with lock:
+                    worksheet = sheet.worksheet("respuestas")
+                    fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    fila = [
+                        fecha,
+                        comision,
+                        conocimientos_previos,
+                        valoracion_curso,
+                        conocimientos_aplicables,
+                        valoracion_docente,
+                        aprendizajes_adquiridos,
+                        comentarios
+                    ]
+                    worksheet.append_row(fila)
+                    st.session_state.enviado = True
+                    st.rerun()
+            except Exception as e:
+                st.error("❌ Hubo un error al guardar tu respuesta. Por favor, intentá nuevamente.")
+                st.exception(e)
 
 else:
     st.success("✅ ¡GRACIAS! TU OPINIÓN FUE ENVIADA CORRECTAMENTE.")
