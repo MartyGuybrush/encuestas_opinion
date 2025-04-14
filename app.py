@@ -64,13 +64,38 @@ def get_global_lock():
 lock = get_global_lock()
 
 # === CACHE DE HOJA GOOGLE ===
-@st.cache_resource
+# Este bloque tenía como función conectarse a una hoja de Google Sheets usando credenciales de servicio.
+# La conexión se cacheaba con @st.cache_resource, lo que permitía que Streamlit la reutilice en vez de crear una nueva
+# cada vez que un usuario accedía a la app.
+# Sin embargo, al no tener protección adicional con un lock, este código era vulnerable a errores si varias sesiones
+# intentaban conectarse a la hoja al mismo tiempo. Por eso, esta versión fue reemplazada por una versión mejorada
+# que incluye un bloqueo con `threading.Lock()` para manejar concurrencia de forma segura.
+
+#@st.cache_resource
+#def get_hoja_google():
+#    scope = ["https://www.googleapis.com/auth/spreadsheets"]
+#    credenciales_dict = json.loads(st.secrets["GOOGLE_CREDS"])
+#    creds = Credentials.from_service_account_info(credenciales_dict, scopes=scope)
+#    gc = gspread.authorize(creds)
+#    return gc.open_by_key("1440OXxY-2bw7NAFr01hGeiVYrbHu_G47u9IIoLfaAjM")
+
+
+# === CACHE DE HOJA GOOGLE ===
+# Este bloque se encarga de establecer una conexión segura y eficiente con una hoja de Google Sheets,
+# usando credenciales de servicio y protegiendo el acceso con un "lock global".
+# El decorador @st.cache_resource permite que Streamlit reutilice esta conexión entre sesiones,
+# evitando que se vuelva a ejecutar cada vez que un nuevo usuario abre la app.
+# Además, al usar `with get_global_lock()`, evitamos que múltiples sesiones ejecuten la conexión al mismo tiempo,
+# lo cual podría saturar la API de Google y causar errores cuando hay muchos usuarios concurrentes.
+
+@st.cache_resource  # Streamlit guarda esta función como recurso compartido entre sesiones activas
 def get_hoja_google():
-    scope = ["https://www.googleapis.com/auth/spreadsheets"]
-    credenciales_dict = json.loads(st.secrets["GOOGLE_CREDS"])
-    creds = Credentials.from_service_account_info(credenciales_dict, scopes=scope)
-    gc = gspread.authorize(creds)
-    return gc.open_by_key("1440OXxY-2bw7NAFr01hGeiVYrbHu_G47u9IIoLfaAjM")
+    with get_global_lock():  # Solo una sesión a la vez puede ejecutar este bloque (protección contra concurrencia)
+        scope = ["https://www.googleapis.com/auth/spreadsheets"]  # Definimos los permisos necesarios para acceder a Google Sheets
+        credenciales_dict = json.loads(st.secrets["GOOGLE_CREDS"])  # Cargamos las credenciales de servicio desde el archivo secreto
+        creds = Credentials.from_service_account_info(credenciales_dict, scopes=scope)  # Creamos el objeto de credenciales con permisos
+        gc = gspread.authorize(creds)  # Autorizamos la conexión a Google Sheets usando las credenciales
+        return gc.open_by_key("1440OXxY-2bw7NAFr01hGeiVYrbHu_G47u9IIoLfaAjM")  # Abrimos la hoja por su ID único y la devolvemos
 
 # === INTENTAR CARGAR HOJA ===
 try:
