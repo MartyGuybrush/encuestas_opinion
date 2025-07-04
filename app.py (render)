@@ -104,7 +104,6 @@ try:
     sheet = get_hoja_google()
 except Exception as e:
     st.error("❌ No se pudo cargar el formulario. Intentalo nuevamente en unos minutos.")
-    st.exception(e)  # Esto muestra el error exacto
     st.stop()
 
 # === OBTENER PARÁMETRO DE COMISIÓN ===
