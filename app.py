@@ -92,7 +92,9 @@ lock = get_global_lock()
 def get_hoja_google():
     with get_global_lock():  # Solo una sesión a la vez puede ejecutar este bloque (protección contra concurrencia)
         scope = ["https://www.googleapis.com/auth/spreadsheets"]  # Definimos los permisos necesarios para acceder a Google Sheets
-        credenciales_dict = json.loads(st.secrets["GOOGLE_CREDS"])  # Cargamos las credenciales de servicio desde el archivo secreto
+      #  credenciales_dict = json.loads(st.secrets["GOOGLE_CREDS"])  # Cargamos las credenciales de servicio desde el archivo secreto
+        with open("/etc/secrets/GOOGLE_CREDS.json") as f:
+            credenciales_dict = json.load(f)        
         creds = Credentials.from_service_account_info(credenciales_dict, scopes=scope)  # Creamos el objeto de credenciales con permisos
         gc = gspread.authorize(creds)  # Autorizamos la conexión a Google Sheets usando las credenciales
         return gc.open_by_key("1440OXxY-2bw7NAFr01hGeiVYrbHu_G47u9IIoLfaAjM")  # Abrimos la hoja por su ID único y la devolvemos
